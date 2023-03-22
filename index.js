@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dbConnect = require("./utils/dbConnect");
+const userRoutes = require("./routes/v1/user.route");
 
 require("dotenv").config();
 require("colors");
@@ -18,9 +19,18 @@ app.use(express.json());
 dbConnect()
   .then((client) => {
     try {
+      /* ----User Collection and User API call---- */
+      const userCollection = client.db("heroRider").collection("user");
+      app.use("/api/v1/user", userRoutes(userCollection));
+
       // testing server
       app.get("/", (req, res) => {
         res.send("Welcome to the Hero Rider server.");
+      });
+      app.get("/", (req, res) => {
+        res.send(
+          "Welcome to the Hero Rider server. base starting route= http....../api/v1"
+        );
       });
     } finally {
     }
