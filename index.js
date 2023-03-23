@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const mongoose = require("mongoose");
 const dbConnect = require("./utils/dbConnect");
 const userRoutes = require("./routes/v1/user.route");
 

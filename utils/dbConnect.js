@@ -1,7 +1,12 @@
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-
+const mongoose = require("mongoose");
 async function dbConnect() {
   const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.hufticd.mongodb.net/?retryWrites=true&w=majority`;
+  // const client = mongoose.connect(uri, {
+  //   useNewUrlParser: true,
+  //   useUnifiedTopology: true,
+  //   serverApi: ServerApiVersion.v1,
+  // });
   const client = new MongoClient(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
